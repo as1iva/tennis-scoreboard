@@ -1,8 +1,10 @@
 package org.as1iva.repository;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaQuery;
 import lombok.RequiredArgsConstructor;
+import org.as1iva.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,24 +14,31 @@ import java.util.Optional;
 public abstract class BaseRepository<K extends Serializable, E> implements CrudRepository<K, E> {
 
     private final Class<E> entityClass;
-    private final EntityManager entityManager;
+    protected final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
     public E save(E entity) {
-        entityManager.persist(entity);
-        return entity;
+        try(Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.persist(entity);
+            session.getTransaction().commit();
+            return entity;
+        }
     }
 
     @Override
     public Optional<E> findById(K id) {
-        return Optional.ofNullable(entityManager.find(entityClass, id));
+        try(Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.find(entityClass, id));
+        }
     }
 
     @Override
     public List<E> findAll() {
-        CriteriaQuery<E> criteria = entityManager.getCriteriaBuilder().createQuery(entityClass);
-        criteria.from(entityClass);
-
-        return entityManager.createQuery(criteria).getResultList();
+        try(Session session = sessionFactory.openSession()) {
+            CriteriaQuery<E> criteria = session.getCriteriaBuilder().createQuery(entityClass);
+            criteria.from(entityClass);
+            return session.createQuery(criteria).getResultList();
+        }
     }
 }
