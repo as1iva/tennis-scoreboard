@@ -17,10 +17,10 @@ public class Match {
     private Long id;
 
     @Column(name = "first_player")
-    private Integer firstPlayer;
+    private Long firstPlayer;
 
     @Column(name = "second_player")
-    private Integer secondPlayer;
+    private Long secondPlayer;
 
     private Integer winner;
 }
