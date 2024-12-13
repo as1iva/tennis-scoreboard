@@ -17,6 +17,21 @@ public class MatchScoreServlet extends HttpServlet {
     private final OutgoingMatchesService outgoingMatchesService = new OutgoingMatchesService();
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UUID uuid = UUID.fromString(req.getParameter("uuid"));
+        String id = req.getParameter("playerId");
+
+        System.out.println("Выиграл игрок " + id);
+
+        MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(uuid);
+
+        req.setAttribute("matchScoreDto", matchScoreDto);
+        req.setAttribute("uuid", uuid);
+
+        req.getRequestDispatcher("/jsp/match-score.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID uuid = UUID.fromString(req.getParameter("uuid"));
 
