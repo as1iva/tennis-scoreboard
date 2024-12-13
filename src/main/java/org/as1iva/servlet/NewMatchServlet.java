@@ -21,6 +21,11 @@ public class NewMatchServlet extends HttpServlet {
     private final OutgoingMatchesService outgoingMatchesService = new OutgoingMatchesService();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/jsp/new-match.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String firstPlayerName = req.getParameter("playerOne");
         String secondPlayerName = req.getParameter("playerTwo");
