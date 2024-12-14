@@ -22,5 +22,5 @@ public class Match {
     @Column(name = "second_player")
     private Long secondPlayer;
 
-    private Integer winner;
+    private Long winner;
 }
