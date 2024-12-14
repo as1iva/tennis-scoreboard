@@ -3,20 +3,20 @@ package org.as1iva.dto;
 import lombok.*;
 import org.as1iva.entity.Player;
 
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor
 public class MatchScoreDto {
 
-    private final Player firstPlayer;
+    private Player firstPlayer;
 
-    private final Player secondPlayer;
+    private Player secondPlayer;
 
-    private final int sets;
+    private int sets;
 
-    private final int games;
+    private int games;
 
-    private final int points;
-
+    private int points;
 }
 
