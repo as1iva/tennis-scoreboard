@@ -50,9 +50,9 @@
                 <tbody>
                 <tr class="player1">
                     <td class="table-text">${requestScope.matchScoreDto.firstPlayer.name}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.sets}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.games}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.points}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.firstPlayerSets}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.firstPlayerGames}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.firstPlayerPoints}</td>
                     <td class="table-text">
                         <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}">
                             <input type="hidden" name="playerId" value="${requestScope.matchScoreDto.firstPlayer.id}">
@@ -62,9 +62,9 @@
                 </tr>
                 <tr class="player2">
                     <td class="table-text">${requestScope.matchScoreDto.secondPlayer.name}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.sets}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.games}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.points}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.secondPlayerSets}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.secondPlayerGames}</td>
+                    <td class="table-text">${requestScope.matchScoreDto.secondPlayerPoints}</td>
                     <td class="table-text">
                         <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}">
                             <input type="hidden" name="playerId" value="${requestScope.matchScoreDto.secondPlayer.id}">
