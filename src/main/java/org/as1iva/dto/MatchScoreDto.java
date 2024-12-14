@@ -10,13 +10,15 @@ import org.as1iva.entity.Player;
 public class MatchScoreDto {
 
     private Player firstPlayer;
-
     private Player secondPlayer;
 
-    private int sets;
+    private int firstPlayerSets;
+    private int secondPlayerSets;
 
-    private int games;
+    private int firstPlayerGames;
+    private int secondPlayerGames;
 
-    private int points;
+    private int firstPlayerPoints;
+    private int secondPlayerPoints;
 }
 
