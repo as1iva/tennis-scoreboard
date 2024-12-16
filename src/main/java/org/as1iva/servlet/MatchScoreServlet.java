@@ -18,10 +18,10 @@ public class MatchScoreServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("playerId");
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
+        Long playerId = Long.parseLong(req.getParameter("playerId"));
 
-        System.out.println("Выиграл игрок " + id);
+        System.out.println("Выиграл игрок " + playerId);
 
         MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(matchId);
 
