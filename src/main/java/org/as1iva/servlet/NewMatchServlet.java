@@ -32,14 +32,14 @@ public class NewMatchServlet extends HttpServlet {
 
         Player playerOne = playerRepository.findByName(firstPlayerName)
                 .orElse(Player.builder()
-                        .id(1L)
+                        .id(0L)
                         .name(firstPlayerName)
                         .build()
                 );
 
         Player playerTwo = playerRepository.findByName(secondPlayerName)
                 .orElse(Player.builder()
-                        .id(2L)
+                        .id(1L)
                         .name(secondPlayerName)
                         .build()
                 );
