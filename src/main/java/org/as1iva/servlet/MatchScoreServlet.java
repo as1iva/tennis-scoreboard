@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
+import org.as1iva.service.MatchScoreCalculationService;
 import org.as1iva.service.OutgoingMatchesService;
 
 import java.io.IOException;
@@ -21,9 +22,13 @@ public class MatchScoreServlet extends HttpServlet {
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
         Long playerId = Long.parseLong(req.getParameter("playerId"));
 
+        MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(matchId);
+
+        MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService(matchScoreDto);
+
         System.out.println("Выиграл игрок " + playerId);
 
-        MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(matchId);
+        matchScoreCalculationService.countScore(playerId);
 
         req.setAttribute("matchScoreDto", matchScoreDto);
         req.setAttribute("uuid", matchId);
