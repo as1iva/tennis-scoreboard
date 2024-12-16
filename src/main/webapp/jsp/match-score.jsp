@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -52,7 +54,23 @@
                     <td class="table-text">${requestScope.matchScoreDto.firstPlayer.name}</td>
                     <td class="table-text">${requestScope.matchScoreDto.firstPlayerSets}</td>
                     <td class="table-text">${requestScope.matchScoreDto.firstPlayerGames}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.firstPlayerPoints}</td>
+                    <td class="table-text">
+                        <c:choose>
+                            <c:when test="${requestScope.matchScoreDto.firstPlayerGames == 6 and requestScope.matchScoreDto.secondPlayerGames == 6}">
+                                ${requestScope.matchScoreDto.firstPlayerPoints}
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${requestScope.matchScoreDto.firstPlayerPoints == 0}">0</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.firstPlayerPoints == 1}">15</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.firstPlayerPoints == 2}">30</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.firstPlayerPoints == 3}">40</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.firstPlayerPoints == 4}">AD</c:when>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td class="table-text">
                         <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}">
                             <input type="hidden" name="playerId" value="${requestScope.matchScoreDto.firstPlayer.id}">
@@ -64,7 +82,23 @@
                     <td class="table-text">${requestScope.matchScoreDto.secondPlayer.name}</td>
                     <td class="table-text">${requestScope.matchScoreDto.secondPlayerSets}</td>
                     <td class="table-text">${requestScope.matchScoreDto.secondPlayerGames}</td>
-                    <td class="table-text">${requestScope.matchScoreDto.secondPlayerPoints}</td>
+                    <td class="table-text">
+                        <c:choose>
+                            <c:when test="${requestScope.matchScoreDto.firstPlayerGames == 6 and requestScope.matchScoreDto.secondPlayerGames == 6}">
+                                ${requestScope.matchScoreDto.secondPlayerPoints}
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${requestScope.matchScoreDto.secondPlayerPoints == 0}">0</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.secondPlayerPoints == 1}">15</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.secondPlayerPoints == 2}">30</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.secondPlayerPoints == 3}">40</c:when>
+                                    <c:when test="${requestScope.matchScoreDto.secondPlayerPoints == 4}">AD</c:when>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td class="table-text">
                         <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}">
                             <input type="hidden" name="playerId" value="${requestScope.matchScoreDto.secondPlayer.id}">
