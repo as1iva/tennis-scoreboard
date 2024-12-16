@@ -20,14 +20,12 @@ public class MatchScoreCalculationService {
             if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() <= 2) {
                 matchScoreDto.setFirstPlayerGames(matchScoreDto.getFirstPlayerGames() + 1);
 
-                matchScoreDto.setFirstPlayerPoints(0);
-                matchScoreDto.setSecondPlayerPoints(0);
+                resetPoints();
 
             } else if (matchScoreDto.getFirstPlayerPoints() == 5 && matchScoreDto.getSecondPlayerPoints() == 3) {
                 matchScoreDto.setFirstPlayerGames(matchScoreDto.getFirstPlayerGames() + 1);
 
-                matchScoreDto.setFirstPlayerPoints(0);
-                matchScoreDto.setSecondPlayerPoints(0);
+                resetPoints();
             } else if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() == 4){
                 matchScoreDto.setFirstPlayerPoints(3);
                 matchScoreDto.setSecondPlayerPoints(3);
@@ -40,14 +38,11 @@ public class MatchScoreCalculationService {
             if (matchScoreDto.getSecondPlayerPoints() == 4 && matchScoreDto.getFirstPlayerPoints() <= 2) {
                 matchScoreDto.setSecondPlayerGames(matchScoreDto.getSecondPlayerGames() + 1);
 
-                matchScoreDto.setFirstPlayerPoints(0);
-                matchScoreDto.setSecondPlayerPoints(0);
-
+                resetPoints();
             } else if (matchScoreDto.getSecondPlayerPoints() == 5 && matchScoreDto.getFirstPlayerPoints() == 3) {
                 matchScoreDto.setSecondPlayerGames(matchScoreDto.getSecondPlayerGames() + 1);
 
-                matchScoreDto.setFirstPlayerPoints(0);
-                matchScoreDto.setSecondPlayerPoints(0);
+                resetPoints();
             } else if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() == 4){
                 matchScoreDto.setFirstPlayerPoints(3);
                 matchScoreDto.setSecondPlayerPoints(3);
@@ -66,8 +61,7 @@ public class MatchScoreCalculationService {
                     matchScoreDto.setFirstPlayerGames(0);
                     matchScoreDto.setSecondPlayerGames(0);
 
-                    matchScoreDto.setFirstPlayerPoints(0);
-                    matchScoreDto.setSecondPlayerPoints(0);
+                    resetPoints();
                 }
             }
 
@@ -80,8 +74,7 @@ public class MatchScoreCalculationService {
                     matchScoreDto.setFirstPlayerGames(0);
                     matchScoreDto.setSecondPlayerGames(0);
 
-                    matchScoreDto.setFirstPlayerPoints(0);
-                    matchScoreDto.setSecondPlayerPoints(0);
+                    resetPoints();
                 }
             }
             return;
@@ -134,5 +127,10 @@ public class MatchScoreCalculationService {
                 System.out.println("Игрок выиграл" + matchScoreDto.getSecondPlayer().getName());
             }
         }
+    }
+
+    private void resetPoints() {
+        matchScoreDto.setFirstPlayerPoints(0);
+        matchScoreDto.setSecondPlayerPoints(0);
     }
 }
