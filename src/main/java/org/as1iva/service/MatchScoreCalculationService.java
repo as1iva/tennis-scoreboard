@@ -26,9 +26,6 @@ public class MatchScoreCalculationService {
                 matchScoreDto.setFirstPlayerGames(matchScoreDto.getFirstPlayerGames() + 1);
 
                 resetPoints();
-            } else if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() == 4){
-                matchScoreDto.setFirstPlayerPoints(3);
-                matchScoreDto.setSecondPlayerPoints(3);
             }
         }
 
@@ -43,10 +40,12 @@ public class MatchScoreCalculationService {
                 matchScoreDto.setSecondPlayerGames(matchScoreDto.getSecondPlayerGames() + 1);
 
                 resetPoints();
-            } else if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() == 4){
-                matchScoreDto.setFirstPlayerPoints(3);
-                matchScoreDto.setSecondPlayerPoints(3);
             }
+        }
+
+        if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() == 4) {
+            matchScoreDto.setFirstPlayerPoints(3);
+            matchScoreDto.setSecondPlayerPoints(3);
         }
     }
 
