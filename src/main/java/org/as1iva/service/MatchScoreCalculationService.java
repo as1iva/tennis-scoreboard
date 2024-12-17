@@ -17,12 +17,7 @@ public class MatchScoreCalculationService {
         if (id == 0) {
             matchScoreDto.setFirstPlayerPoints(matchScoreDto.getFirstPlayerPoints() + 1);
 
-            if (matchScoreDto.getFirstPlayerPoints() == 4 && matchScoreDto.getSecondPlayerPoints() <= 2) {
-                matchScoreDto.setFirstPlayerGames(matchScoreDto.getFirstPlayerGames() + 1);
-
-                resetPoints();
-
-            } else if (matchScoreDto.getFirstPlayerPoints() == 5 && matchScoreDto.getSecondPlayerPoints() == 3) {
+            if (hasPlayerWonGame(matchScoreDto.getFirstPlayerPoints(), matchScoreDto.getSecondPlayerPoints())) {
                 matchScoreDto.setFirstPlayerGames(matchScoreDto.getFirstPlayerGames() + 1);
 
                 resetPoints();
@@ -32,11 +27,7 @@ public class MatchScoreCalculationService {
         if (id == 1) {
             matchScoreDto.setSecondPlayerPoints(matchScoreDto.getSecondPlayerPoints() + 1);
 
-            if (matchScoreDto.getSecondPlayerPoints() == 4 && matchScoreDto.getFirstPlayerPoints() <= 2) {
-                matchScoreDto.setSecondPlayerGames(matchScoreDto.getSecondPlayerGames() + 1);
-
-                resetPoints();
-            } else if (matchScoreDto.getSecondPlayerPoints() == 5 && matchScoreDto.getFirstPlayerPoints() == 3) {
+            if (hasPlayerWonGame(matchScoreDto.getSecondPlayerPoints(), matchScoreDto.getFirstPlayerPoints())) {
                 matchScoreDto.setSecondPlayerGames(matchScoreDto.getSecondPlayerGames() + 1);
 
                 resetPoints();
@@ -118,6 +109,10 @@ public class MatchScoreCalculationService {
                 System.out.println("Игрок выиграл" + matchScoreDto.getSecondPlayer().getName());
             }
         }
+    }
+
+    private boolean hasPlayerWonGame(int playerPoints, int opponentPoints) {
+        return (playerPoints == 4 && opponentPoints <= 2) || (playerPoints == 5 && opponentPoints == 3);
     }
 
     private void resetPoints() {
