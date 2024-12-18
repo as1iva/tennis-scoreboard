@@ -42,27 +42,7 @@ public class MatchScoreCalculationService {
 
     private void countGames(Long id) {
         if (isTieBreak()) {
-            if (id == 0) {
-                matchScoreDto.setFirstPlayerPoints(matchScoreDto.getFirstPlayerPoints() + 1);
-
-                if (matchScoreDto.getFirstPlayerPoints() >= 7 && (matchScoreDto.getSecondPlayerPoints() <= matchScoreDto.getFirstPlayerPoints() - 2)) {
-                    matchScoreDto.setFirstPlayerSets(matchScoreDto.getFirstPlayerSets() + 1);
-
-                    resetGames();
-                    resetPoints();
-                }
-            }
-
-            if (id == 1) {
-                matchScoreDto.setSecondPlayerPoints(matchScoreDto.getSecondPlayerPoints() + 1);
-
-                if (matchScoreDto.getSecondPlayerPoints() >= 7 && (matchScoreDto.getFirstPlayerPoints() <= matchScoreDto.getSecondPlayerPoints() - 2)) {
-                    matchScoreDto.setSecondPlayerSets(matchScoreDto.getSecondPlayerSets() + 1);
-
-                    resetGames();
-                    resetPoints();
-                }
-            }
+            countTieBreak(id);
             return;
         }
 
@@ -95,6 +75,30 @@ public class MatchScoreCalculationService {
         }
     }
 
+    private void countTieBreak(Long id) {
+        if (id == 0) {
+            matchScoreDto.setFirstPlayerPoints(matchScoreDto.getFirstPlayerPoints() + 1);
+
+            if (hasPlayerWonTieBreak(matchScoreDto.getFirstPlayerPoints(), matchScoreDto.getSecondPlayerPoints())) {
+                matchScoreDto.setFirstPlayerSets(matchScoreDto.getFirstPlayerSets() + 1);
+
+                resetGames();
+                resetPoints();
+            }
+        }
+
+        if (id == 1) {
+            matchScoreDto.setSecondPlayerPoints(matchScoreDto.getSecondPlayerPoints() + 1);
+
+            if (hasPlayerWonTieBreak(matchScoreDto.getSecondPlayerPoints(), matchScoreDto.getFirstPlayerPoints())) {
+                matchScoreDto.setSecondPlayerSets(matchScoreDto.getSecondPlayerSets() + 1);
+
+                resetGames();
+                resetPoints();
+            }
+        }
+    }
+
     private void countSets(Long id) {
         countGames(id);
 
@@ -117,6 +121,10 @@ public class MatchScoreCalculationService {
 
     private boolean isTieBreak() {
         return matchScoreDto.getFirstPlayerGames() == 6 && matchScoreDto.getSecondPlayerGames() == 6;
+    }
+
+    private boolean hasPlayerWonTieBreak(int playerPoints, int opponentPoints) {
+        return playerPoints >= 7 && (opponentPoints <= playerPoints - 2);
     }
 
     private void resetPoints() {
