@@ -41,7 +41,7 @@ public class MatchScoreCalculationService {
     }
 
     private void countGames(Long id) {
-        if (matchScoreDto.getFirstPlayerGames() == 6 && matchScoreDto.getSecondPlayerGames() == 6) {
+        if (isTieBreak()) {
             if (id == 0) {
                 matchScoreDto.setFirstPlayerPoints(matchScoreDto.getFirstPlayerPoints() + 1);
 
@@ -113,6 +113,10 @@ public class MatchScoreCalculationService {
 
     private boolean hasPlayerWonGame(int playerPoints, int opponentPoints) {
         return (playerPoints == 4 && opponentPoints <= 2) || (playerPoints == 5 && opponentPoints == 3);
+    }
+
+    private boolean isTieBreak() {
+        return matchScoreDto.getFirstPlayerGames() == 6 && matchScoreDto.getSecondPlayerGames() == 6;
     }
 
     private void resetPoints() {
