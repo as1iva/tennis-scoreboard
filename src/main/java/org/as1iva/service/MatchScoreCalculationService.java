@@ -49,11 +49,7 @@ public class MatchScoreCalculationService {
         if (id == 0) {
             countPoints(id);
 
-            if (matchScoreDto.getFirstPlayerGames() == 6 && matchScoreDto.getSecondPlayerGames() <= 4) {
-                matchScoreDto.setFirstPlayerSets(matchScoreDto.getFirstPlayerSets() + 1);
-
-                resetGames();
-            } else if (matchScoreDto.getFirstPlayerGames() == 7 && matchScoreDto.getSecondPlayerGames() == 5) {
+            if (hasPlayerWonSet(matchScoreDto.getFirstPlayerGames(), matchScoreDto.getSecondPlayerGames())) {
                 matchScoreDto.setFirstPlayerSets(matchScoreDto.getFirstPlayerSets() + 1);
 
                 resetGames();
@@ -63,11 +59,7 @@ public class MatchScoreCalculationService {
         if (id == 1) {
             countPoints(id);
 
-            if (matchScoreDto.getSecondPlayerGames() == 6 && matchScoreDto.getFirstPlayerGames() <= 4) {
-                matchScoreDto.setSecondPlayerSets(matchScoreDto.getSecondPlayerSets() + 1);
-
-                resetGames();
-            } else if (matchScoreDto.getSecondPlayerGames() == 7 && matchScoreDto.getFirstPlayerGames() == 5) {
+            if (hasPlayerWonSet(matchScoreDto.getSecondPlayerGames(), matchScoreDto.getFirstPlayerGames())) {
                 matchScoreDto.setSecondPlayerSets(matchScoreDto.getSecondPlayerSets() + 1);
 
                 resetGames();
@@ -125,6 +117,10 @@ public class MatchScoreCalculationService {
 
     private boolean hasPlayerWonTieBreak(int playerPoints, int opponentPoints) {
         return playerPoints >= 7 && (opponentPoints <= playerPoints - 2);
+    }
+
+    private boolean hasPlayerWonSet(int playerGames, int opponentGames) {
+        return (playerGames == 6 && opponentGames <= 4) || (playerGames == 7 && opponentGames == 5);
     }
 
     private void resetPoints() {
