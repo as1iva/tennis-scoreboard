@@ -11,6 +11,9 @@ public class MatchScoreCalculationService {
     public void countScore(Long id) {
         countSets(id);
     }
+    public boolean isMatchOver() {
+        return matchScoreDto.getFirstPlayerSets() == 2 || matchScoreDto.getSecondPlayerSets() == 2;
+    }
 
     private void countPoints(Long id) {
 
@@ -87,22 +90,6 @@ public class MatchScoreCalculationService {
 
                 resetGames();
                 resetPoints();
-            }
-        }
-    }
-
-    private void countSets(Long id) {
-        countGames(id);
-
-        if (id == 0) {
-            if (matchScoreDto.getFirstPlayerSets() == 2) {
-                System.out.println("Игрок выиграл" + matchScoreDto.getFirstPlayer().getName());
-            }
-        }
-
-        if (id == 1) {
-            if (matchScoreDto.getSecondPlayerSets() == 2) {
-                System.out.println("Игрок выиграл" + matchScoreDto.getSecondPlayer().getName());
             }
         }
     }
