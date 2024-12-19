@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.service.MatchScoreCalculationService;
-import org.as1iva.service.OutgoingMatchesService;
+import org.as1iva.service.OngoingMatchesService;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @WebServlet("/match-score")
 public class MatchScoreServlet extends HttpServlet {
 
-    private final OutgoingMatchesService outgoingMatchesService = new OutgoingMatchesService();
+    private final OngoingMatchesService outgoingMatchesService = new OngoingMatchesService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

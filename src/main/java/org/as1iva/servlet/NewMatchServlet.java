@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.entity.Player;
 import org.as1iva.repository.PlayerRepository;
-import org.as1iva.service.OutgoingMatchesService;
+import org.as1iva.service.OngoingMatchesService;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -18,7 +18,7 @@ public class NewMatchServlet extends HttpServlet {
 
     private final PlayerRepository playerRepository = new PlayerRepository();
 
-    private final OutgoingMatchesService outgoingMatchesService = new OutgoingMatchesService();
+    private final OngoingMatchesService outgoingMatchesService = new OngoingMatchesService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
