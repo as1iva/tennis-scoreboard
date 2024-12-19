@@ -15,7 +15,7 @@ public class MatchScoreCalculationService {
         return matchScoreDto.getFirstPlayerSets() == 2 || matchScoreDto.getSecondPlayerSets() == 2;
     }
 
-    private void countPoints(Long id) {
+    private void countGames(Long id) {
 
         if (id == 0) {
             matchScoreDto.setFirstPlayerPoints(matchScoreDto.getFirstPlayerPoints() + 1);
@@ -43,14 +43,14 @@ public class MatchScoreCalculationService {
         }
     }
 
-    private void countGames(Long id) {
+    private void countSets(Long id) {
         if (isTieBreak()) {
             countTieBreak(id);
             return;
         }
 
         if (id == 0) {
-            countPoints(id);
+            countGames(id);
 
             if (hasPlayerWonSet(matchScoreDto.getFirstPlayerGames(), matchScoreDto.getSecondPlayerGames())) {
                 matchScoreDto.setFirstPlayerSets(matchScoreDto.getFirstPlayerSets() + 1);
@@ -60,7 +60,7 @@ public class MatchScoreCalculationService {
         }
 
         if (id == 1) {
-            countPoints(id);
+            countGames(id);
 
             if (hasPlayerWonSet(matchScoreDto.getSecondPlayerGames(), matchScoreDto.getFirstPlayerGames())) {
                 matchScoreDto.setSecondPlayerSets(matchScoreDto.getSecondPlayerSets() + 1);
