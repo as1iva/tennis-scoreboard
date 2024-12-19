@@ -26,8 +26,6 @@ public class MatchScoreServlet extends HttpServlet {
 
         MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService(matchScoreDto);
 
-        System.out.println("Выиграл игрок " + playerId);
-
         matchScoreCalculationService.countScore(playerId);
 
         req.setAttribute("matchScoreDto", matchScoreDto);
