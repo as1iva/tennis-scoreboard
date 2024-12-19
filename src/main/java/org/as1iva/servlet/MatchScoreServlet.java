@@ -28,10 +28,14 @@ public class MatchScoreServlet extends HttpServlet {
 
         matchScoreCalculationService.countScore(playerId);
 
-        req.setAttribute("matchScoreDto", matchScoreDto);
-        req.setAttribute("uuid", matchId);
+        if (!matchScoreCalculationService.isMatchOver()) {
+            req.setAttribute("matchScoreDto", matchScoreDto);
+            req.setAttribute("uuid", matchId);
 
-        req.getRequestDispatcher("/jsp/match-score.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/match-score.jsp").forward(req, resp);
+        } else {
+            resp.sendRedirect("/matches");
+        }
     }
 
     @Override
