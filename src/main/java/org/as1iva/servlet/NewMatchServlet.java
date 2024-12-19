@@ -50,9 +50,8 @@ public class NewMatchServlet extends HttpServlet {
                 .secondPlayer(playerTwo)
                 .build();
 
-        UUID uuid = UUID.randomUUID();
+        UUID uuid = outgoingMatchesService.setMatchScore(match);
 
-        outgoingMatchesService.setMatchScore(uuid, match);
         resp.sendRedirect("/match-score?uuid=" + uuid);
     }
 }

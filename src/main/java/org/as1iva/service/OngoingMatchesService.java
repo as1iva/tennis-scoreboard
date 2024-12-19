@@ -14,7 +14,10 @@ public class OngoingMatchesService {
         return currentMatches.get(uuid);
     }
 
-    public void setMatchScore(UUID uuid, MatchScoreDto matchScoreDto) {
+    public UUID setMatchScore(MatchScoreDto matchScoreDto) {
+        UUID uuid = UUID.randomUUID();
+
         currentMatches.put(uuid, matchScoreDto);
+        return uuid;
     }
 }
