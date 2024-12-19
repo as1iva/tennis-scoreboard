@@ -20,4 +20,8 @@ public class OngoingMatchesService {
         currentMatches.put(uuid, matchScoreDto);
         return uuid;
     }
+
+    public void removeMatchScore(UUID uuid) {
+        currentMatches.remove(uuid);
+    }
 }
