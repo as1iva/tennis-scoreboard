@@ -2,6 +2,7 @@ package org.as1iva.service;
 
 import lombok.AllArgsConstructor;
 import org.as1iva.dto.MatchScoreDto;
+import org.as1iva.entity.Player;
 
 @AllArgsConstructor
 public class MatchScoreCalculationService {
@@ -13,6 +14,14 @@ public class MatchScoreCalculationService {
     }
     public boolean isMatchOver() {
         return matchScoreDto.getFirstPlayerSets() == 2 || matchScoreDto.getSecondPlayerSets() == 2;
+    }
+
+    public Player getWinner() {
+        if (matchScoreDto.getFirstPlayerSets() == 2) {
+            return matchScoreDto.getFirstPlayer();
+        }
+
+        return matchScoreDto.getSecondPlayer();
     }
 
     private void countGames(Long id) {
