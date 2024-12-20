@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.entity.Player;
-import org.as1iva.repository.PlayerRepository;
 import org.as1iva.service.OngoingMatchesService;
 
 import java.io.IOException;
@@ -15,8 +14,6 @@ import java.util.UUID;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
-
-    private final PlayerRepository playerRepository = new PlayerRepository();
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
@@ -30,20 +27,15 @@ public class NewMatchServlet extends HttpServlet {
         String firstPlayerName = req.getParameter("playerOne");
         String secondPlayerName = req.getParameter("playerTwo");
 
-        Player playerOne = playerRepository.findByName(firstPlayerName)
-                .orElse(Player.builder()
+        Player playerOne = Player.builder()
                         .id(0L)
                         .name(firstPlayerName)
-                        .build()
-                );
+                        .build();
 
-        Player playerTwo = playerRepository.findByName(secondPlayerName)
-                .orElse(Player.builder()
+        Player playerTwo = Player.builder()
                         .id(1L)
                         .name(secondPlayerName)
-                        .build()
-                );
-
+                        .build();
 
         MatchScoreDto match = MatchScoreDto.builder()
                 .firstPlayer(playerOne)
