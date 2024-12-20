@@ -18,7 +18,7 @@ public class NewMatchServlet extends HttpServlet {
 
     private final PlayerRepository playerRepository = new PlayerRepository();
 
-    private final OngoingMatchesService outgoingMatchesService = new OngoingMatchesService();
+    private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +50,7 @@ public class NewMatchServlet extends HttpServlet {
                 .secondPlayer(playerTwo)
                 .build();
 
-        UUID uuid = outgoingMatchesService.setMatchScore(match);
+        UUID uuid = ongoingMatchesService.setMatchScore(match);
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
     }

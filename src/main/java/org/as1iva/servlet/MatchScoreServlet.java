@@ -15,14 +15,14 @@ import java.util.UUID;
 @WebServlet("/match-score")
 public class MatchScoreServlet extends HttpServlet {
 
-    private final OngoingMatchesService outgoingMatchesService = new OngoingMatchesService();
+    private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
         Long playerId = Long.parseLong(req.getParameter("playerId"));
 
-        MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(matchId);
+        MatchScoreDto matchScoreDto = ongoingMatchesService.getMatchScore(matchId);
 
         MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService(matchScoreDto);
 
@@ -42,7 +42,7 @@ public class MatchScoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
 
-        MatchScoreDto matchScoreDto = outgoingMatchesService.getMatchScore(matchId);
+        MatchScoreDto matchScoreDto = ongoingMatchesService.getMatchScore(matchId);
 
         req.setAttribute("matchScoreDto", matchScoreDto);
         req.setAttribute("uuid", matchId);
