@@ -128,4 +128,20 @@ class MatchScoreCalculationServiceTest {
                 () -> assertThat(matchScoreDto.getSecondPlayerPoints()).isEqualTo(6)
         );
     }
+
+    @Test
+    void endSetIfPlayerWinsGameAt6And4() {
+        matchScoreDto.setFirstPlayerGames(6);
+        matchScoreDto.setSecondPlayerGames(4);
+
+        matchScoreCalculationService.countScore(matchScoreDto.getFirstPlayer().getId());
+
+        assertAll(
+                () -> assertThat(matchScoreDto.getFirstPlayerSets()).isEqualTo(1),
+                () -> assertThat(matchScoreDto.getSecondPlayerSets()).isEqualTo(0),
+
+                () -> assertThat(matchScoreDto.getFirstPlayerGames()).isEqualTo(0),
+                () -> assertThat(matchScoreDto.getSecondPlayerGames()).isEqualTo(0)
+        );
+    }
 }
