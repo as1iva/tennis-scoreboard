@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
+import org.as1iva.entity.Player;
+import org.as1iva.service.FinishedMatchesPersistenceService;
 import org.as1iva.service.MatchScoreCalculationService;
 import org.as1iva.service.OngoingMatchesService;
 
@@ -16,6 +18,7 @@ import java.util.UUID;
 public class MatchScoreServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
+    private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,6 +37,12 @@ public class MatchScoreServlet extends HttpServlet {
 
             req.getRequestDispatcher("/jsp/match-score.jsp").forward(req, resp);
         } else {
+            Player winner = matchScoreCalculationService.getWinner();
+
+            finishedMatchesPersistenceService.saveMatch(matchScoreDto, winner);
+
+            ongoingMatchesService.removeMatchScore(matchId);
+
             resp.sendRedirect("/matches");
         }
     }
