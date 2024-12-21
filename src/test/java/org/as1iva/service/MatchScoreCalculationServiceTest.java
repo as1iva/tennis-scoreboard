@@ -65,4 +65,26 @@ class MatchScoreCalculationServiceTest {
                 () -> assertThat(matchScoreDto.getSecondPlayerSets()).isEqualTo(0)
         );
     }
+
+    @Test
+    void endTieBreakIfPlayerWinsPointAt7And0() {
+        matchScoreDto.setFirstPlayerGames(6);
+        matchScoreDto.setSecondPlayerGames(6);
+
+        matchScoreDto.setFirstPlayerPoints(7);
+        matchScoreDto.setSecondPlayerPoints(0);
+
+        matchScoreCalculationService.countScore(matchScoreDto.getFirstPlayer().getId());
+
+        assertAll(
+                () -> assertThat(matchScoreDto.getFirstPlayerSets()).isEqualTo(1),
+                () -> assertThat(matchScoreDto.getSecondPlayerSets()).isEqualTo(0),
+
+                () -> assertThat(matchScoreDto.getFirstPlayerGames()).isEqualTo(0),
+                () -> assertThat(matchScoreDto.getSecondPlayerGames()).isEqualTo(0),
+
+                () -> assertThat(matchScoreDto.getFirstPlayerPoints()).isEqualTo(0),
+                () -> assertThat(matchScoreDto.getSecondPlayerPoints()).isEqualTo(0)
+        );
+    }
 }
