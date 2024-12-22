@@ -22,9 +22,9 @@ public class FinishedMatchesPersistenceService {
         }
 
         Match match = Match.builder()
-                .firstPlayer(playerOne.getId())
-                .secondPlayer(playerTwo.getId())
-                .winner(winner.getId())
+                .firstPlayer(playerOne)
+                .secondPlayer(playerTwo)
+                .winner(winner)
                 .build();
 
         matchRepository.save(match);

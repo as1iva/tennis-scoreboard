@@ -16,11 +16,15 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_player")
-    private Long firstPlayer;
+    @ManyToOne
+    @JoinColumn(name = "first_player_id")
+    private Player firstPlayer;
 
-    @Column(name = "second_player")
-    private Long secondPlayer;
+    @ManyToOne
+    @JoinColumn(name = "second_player_id")
+    private Player secondPlayer;
 
-    private Long winner;
+    @ManyToOne
+    @JoinColumn(name = "winner_id")
+    private Player winner;
 }
