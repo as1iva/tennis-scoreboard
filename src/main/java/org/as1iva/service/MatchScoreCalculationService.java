@@ -9,15 +9,17 @@ public class MatchScoreCalculationService {
 
     private final MatchScoreDto matchScoreDto;
 
+    private static final int SETS_FOR_WIN = 2;
+
     public void countScore(Long id) {
         countSets(id);
     }
     public boolean isMatchOver() {
-        return matchScoreDto.getFirstPlayerSets() == 2 || matchScoreDto.getSecondPlayerSets() == 2;
+        return matchScoreDto.getFirstPlayerSets() == SETS_FOR_WIN || matchScoreDto.getSecondPlayerSets() == SETS_FOR_WIN;
     }
 
     public Player getWinner() {
-        if (matchScoreDto.getFirstPlayerSets() == 2) {
+        if (matchScoreDto.getFirstPlayerSets() == SETS_FOR_WIN) {
             return matchScoreDto.getFirstPlayer();
         }
 
