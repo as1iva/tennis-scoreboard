@@ -59,6 +59,18 @@
             </c:forEach>
         </table>
 
+        <c:url var="nextPageUrl" value="${pageContext.request.contextPath}/matches">
+            <c:param name="page" value="${param.page + 1}" />
+        </c:url>
+
+        <c:url var="lastPageUrl" value="${pageContext.request.contextPath}/matches">
+            <c:param name="page" value="${param.page - 1}" />
+        </c:url>
+
+        <c:url var="currentPageUrl" value="${pageContext.request.contextPath}/matches">
+            <c:param name="page" value="${param.page}" />
+        </c:url>
+
         <div class="pagination">
             <a class="prev" href="#"> < </a>
             <a class="num-page current" href="#">1</a>
