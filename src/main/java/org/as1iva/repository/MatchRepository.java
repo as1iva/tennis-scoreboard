@@ -23,7 +23,7 @@ public class MatchRepository extends BaseRepository<Long, Match> {
     public List<Match> findByNameWithPagination(int page, int pageSize, String playerName) {
         try(Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Match WHERE firstPlayer.name LIKE :name OR secondPlayer.name LIKE :name", Match.class)
-                    .setParameter("name", playerName + "%")
+                    .setParameter("name", "%" + playerName + "%")
                     .setFirstResult((page - 1 ) * pageSize)
                     .setMaxResults(pageSize)
                     .list();
@@ -40,7 +40,7 @@ public class MatchRepository extends BaseRepository<Long, Match> {
         try(Session session = sessionFactory.openSession()) {
             return session.createQuery("SELECT COUNT(m) FROM Match m " +
                     " WHERE firstPlayer.name LIKE :name OR secondPlayer.name LIKE :name", Long.class)
-                    .setParameter("name", playerName + "%")
+                    .setParameter("name", "%" + playerName + "%")
                     .getSingleResult();
         }
     }
