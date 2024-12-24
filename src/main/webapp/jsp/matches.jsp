@@ -72,11 +72,43 @@
         </c:url>
 
         <div class="pagination">
-            <a class="prev" href="#"> < </a>
-            <a class="num-page current" href="#">1</a>
-            <a class="num-page" href="#">2</a>
-            <a class="num-page" href="#">3</a>
-            <a class="next" href="#"> > </a>
+            <c:if test="${param.page > 1}">
+                <a class="prev" href="${lastPageUrl}"> < </a>
+            </c:if>
+
+            <c:choose>
+                <c:when test="${param.page == 1}">
+                    <a class="num-page current" href="${currentPageUrl}">${param.page}</a>
+
+                    <c:if test="${requestScope.totalPages > 1}">
+                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${param.page + 1}">${param.page + 1}</a>
+                    </c:if>
+
+                    <c:if test="${requestScope.totalPages > 2}">
+                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${param.page + 2}">${param.page + 2}</a>
+                    </c:if>
+                </c:when>
+
+                <c:when test="${param.page == requestScope.totalPages}">
+                    <c:if test="${requestScope.totalPages > 2}">
+                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${param.page - 2}">${param.page - 2}</a>
+                    </c:if>
+
+                    <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${param.page - 1}">${param.page - 1}</a>
+                    <a class="num-page current" href="${currentPageUrl}">${param.page}</a>
+                </c:when>
+
+                <c:otherwise>
+                    <a class="num-page" href="${lastPageUrl}">${param.page - 1}</a>
+                    <a class="num-page current" href="${currentPageUrl}">${param.page}</a>
+                    <a class="num-page" href="${nextPageUrl}">${param.page + 1}</a>
+                </c:otherwise>
+            </c:choose>
+
+            <c:if test="${param.page < requestScope.totalPages}">
+                <a class="next" href="${nextPageUrl}"> > </a>
+            </c:if>
+
         </div>
     </div>
 </main>
