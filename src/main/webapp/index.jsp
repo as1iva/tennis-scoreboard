@@ -24,7 +24,7 @@
         <div>
             <nav class="nav-links">
                 <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
-                <a class="nav-link" href="${pageContext.request.contextPath}/matches">Matches</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/matches?page=1">Matches</a>
             </nav>
         </div>
     </section>
@@ -40,7 +40,7 @@
                     Start a new match
                 </button>
             </a>
-            <a class="homepage-action-button" href="matches">
+            <a class="homepage-action-button" href="${pageContext.request.contextPath}/matches?page=1">
                 <button class="btn view-results">
                     View match results
                 </button>
