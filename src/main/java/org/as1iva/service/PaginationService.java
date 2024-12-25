@@ -8,7 +8,6 @@ import org.as1iva.repository.MatchRepository;
 import org.as1iva.repository.PlayerRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PaginationService {
@@ -41,8 +40,6 @@ public class PaginationService {
                             .build()
             );
         }
-        Collections.reverse(matchResponseDtoList);
-
         return matchResponseDtoList;
     }
 
@@ -70,8 +67,6 @@ public class PaginationService {
                             .build()
             );
         }
-        Collections.reverse(matchResponseDtoList);
-
         return matchResponseDtoList;
     }
 
