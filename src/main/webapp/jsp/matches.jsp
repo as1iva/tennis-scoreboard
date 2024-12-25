@@ -35,17 +35,20 @@
 <main>
     <div class="container">
         <h1>Matches</h1>
-        <form method="get" action="${pageContext.request.contextPath}/matches">
-            <div class="input-container">
-                <input type="hidden" name="page" value="${param.page}">
+        <div class="input-container">
+
+            <form class="form-matches" method="get" action="${pageContext.request.contextPath}/matches">
+                <input type="hidden" name="page" value="1">
                 <input class="input-filter" placeholder="Filter by name" type="text" name="filter_by_name" />
-                <div>
-                    <a href="${pageContext.request.contextPath}/matches?page=1">
-                        <button class="btn-filter">Reset Filter</button>
-                    </a>
-                </div>
+            </form>
+
+            <div>
+                <a href="${pageContext.request.contextPath}/matches?page=1">
+                    <button class="btn-filter">Reset Filter</button>
+                </a>
             </div>
-        </form>
+        </div>
+
 
         <table class="table-matches">
             <tr>
