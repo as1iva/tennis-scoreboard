@@ -1,5 +1,6 @@
 package org.as1iva.service;
 
+import lombok.Getter;
 import org.as1iva.dto.MatchResponseDto;
 import org.as1iva.dto.PlayerResponseDto;
 import org.as1iva.entity.Match;
@@ -17,6 +18,12 @@ public class PaginationService {
     private final PlayerRepository playerRepository = PlayerRepository.getINSTANCE();
 
     private static final int PAGE_SIZE = 5;
+
+    @Getter
+    private static final PaginationService INSTANCE = new PaginationService();
+
+    private PaginationService() {
+    }
 
     public List<MatchResponseDto> getAllMatchesWithPagination(int page) {
         List<MatchResponseDto> matchResponseDtoList = new ArrayList<>();
