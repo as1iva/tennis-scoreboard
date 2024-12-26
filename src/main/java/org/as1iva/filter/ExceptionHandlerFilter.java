@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.as1iva.exception.DataNotFoundException;
 import org.as1iva.exception.InvalidDataException;
 import org.as1iva.exception.PageNotFoundException;
 
@@ -30,6 +31,10 @@ public class ExceptionHandlerFilter extends HttpFilter {
             req.setAttribute("errorCode", SC_NOT_FOUND);
             req.setAttribute("errorMessage", e.getMessage());
             req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+        }
+        catch(DataNotFoundException e) {
+            req.setAttribute("errorMessage", e.getMessage());
+            req.getRequestDispatcher("/jsp/matches.jsp").forward(req, resp);
         }
     }
 }
