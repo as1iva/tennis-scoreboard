@@ -1,7 +1,10 @@
 package org.as1iva.util;
 
 import lombok.experimental.UtilityClass;
+import org.as1iva.exception.DataNotFoundException;
 import org.as1iva.exception.InvalidDataException;
+
+import java.util.regex.Pattern;
 
 @UtilityClass
 public class ParameterValidator {
@@ -10,5 +13,20 @@ public class ParameterValidator {
         if (firstPlayerName.equals(secondPlayerName)) {
             throw new InvalidDataException("Players must be different");
         }
+    }
+
+    public static int checkPageParameter(String pageParam) {
+        Pattern pattern = Pattern.compile("^[1-9]\\d*$\n");
+        int page;
+
+        if (pageParam == null || pageParam.isEmpty()) {
+            page = 1;
+        } else if (!pattern.matcher(pageParam).matches()) {
+            throw new DataNotFoundException("Oops... this page does not exist");
+        } else {
+            page = Integer.parseInt(pageParam);
+        }
+
+        return page;
     }
 }

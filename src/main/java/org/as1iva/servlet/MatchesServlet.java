@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchResponseDto;
 import org.as1iva.service.PaginationService;
+import org.as1iva.util.ParameterValidator;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,8 +19,10 @@ public class MatchesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = Integer.parseInt(req.getParameter("page"));
+        String pageParam = req.getParameter("page");
         String playerName = req.getParameter("filter_by_name");
+
+        int page = ParameterValidator.checkPageParameter(pageParam);
 
         List<MatchResponseDto> matches;
         long totalPages;
