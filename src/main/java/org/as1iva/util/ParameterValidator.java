@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 @UtilityClass
 public class ParameterValidator {
 
+    private static final String PAGE_NOT_FOUND_MESSAGE = "Oops... this page does not exist";
+
     public static void checkNameEquality(String firstPlayerName, String secondPlayerName) {
         if (firstPlayerName.equals(secondPlayerName)) {
             throw new InvalidDataException("Players must be different");
@@ -23,7 +25,7 @@ public class ParameterValidator {
         if (pageParam == null || pageParam.isEmpty()) {
             page = 1;
         } else if (!pattern.matcher(pageParam).matches()) {
-            throw new PageNotFoundException("Oops... this page does not exist");
+            throw new PageNotFoundException(PAGE_NOT_FOUND_MESSAGE);
         } else {
             page = Integer.parseInt(pageParam);
         }
@@ -32,8 +34,8 @@ public class ParameterValidator {
     }
 
     public static void checkPageParameter(int page, long totalPage) {
-        if (totalPage >= 0 && page > totalPage) {
-            throw new PageNotFoundException("Oops... this page does not exist");
+        if (totalPage > 0 && page > totalPage) {
+            throw new PageNotFoundException(PAGE_NOT_FOUND_MESSAGE);
         } else {
             throw new DataNotFoundException("No players was found");
         }
