@@ -1,5 +1,6 @@
 package org.as1iva.repository;
 
+import lombok.Getter;
 import org.as1iva.entity.Player;
 import org.hibernate.Session;
 
@@ -7,7 +8,10 @@ import java.util.Optional;
 
 public class PlayerRepository extends BaseRepository<Long, Player> {
 
-    public PlayerRepository() {
+    @Getter
+    private static final PlayerRepository INSTANCE = new PlayerRepository();
+
+    private PlayerRepository() {
         super(Player.class);
     }
 

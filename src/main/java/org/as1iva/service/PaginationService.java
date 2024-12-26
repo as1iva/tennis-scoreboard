@@ -12,8 +12,9 @@ import java.util.List;
 
 public class PaginationService {
 
-    private final PlayerRepository playerRepository = new PlayerRepository();
     private final MatchRepository matchRepository = MatchRepository.getINSTANCE();
+
+    private final PlayerRepository playerRepository = PlayerRepository.getINSTANCE();
 
     private static final int PAGE_SIZE = 5;
 

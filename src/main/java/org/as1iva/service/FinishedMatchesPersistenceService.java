@@ -8,9 +8,9 @@ import org.as1iva.repository.PlayerRepository;
 
 public class FinishedMatchesPersistenceService {
 
-    private final PlayerRepository playerRepository = new PlayerRepository();
     private final MatchRepository matchRepository = MatchRepository.getINSTANCE();
 
+    private final PlayerRepository playerRepository = PlayerRepository.getINSTANCE();
 
     public void saveMatch(MatchScoreDto matchScoreDto, Player winner) {
         Player playerOne = savePlayer(matchScoreDto.getFirstPlayer().getName());
