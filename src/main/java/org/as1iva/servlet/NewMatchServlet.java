@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.entity.Player;
 import org.as1iva.service.OngoingMatchesService;
+import org.as1iva.util.ParameterValidator;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -26,6 +27,8 @@ public class NewMatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String firstPlayerName = req.getParameter("playerOne");
         String secondPlayerName = req.getParameter("playerTwo");
+
+        ParameterValidator.checkNameEquality(firstPlayerName, secondPlayerName);
 
         Player playerOne = Player.builder()
                         .id(0L)
