@@ -139,10 +139,6 @@
 
                 </c:when>
 
-                <c:when test="${param.page > requestScope.totalPages or param.page < 1}">
-                    <h1>ERROR</h1>
-                </c:when>
-
                 <c:otherwise>
                     <c:choose>
                         <c:when test="${not empty param.filter_by_name}">
