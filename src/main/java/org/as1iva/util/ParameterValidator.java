@@ -32,7 +32,7 @@ public class ParameterValidator {
     }
 
     public static void checkPageParameter(int page, long totalPage) {
-        if (totalPage > 0 && page > totalPage) {
+        if (totalPage >= 0 && page > totalPage) {
             throw new PageNotFoundException("Oops... this page does not exist");
         } else {
             throw new DataNotFoundException("No players was found");
