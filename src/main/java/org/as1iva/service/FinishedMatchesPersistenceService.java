@@ -1,5 +1,6 @@
 package org.as1iva.service;
 
+import lombok.Getter;
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.entity.Match;
 import org.as1iva.entity.Player;
@@ -11,6 +12,12 @@ public class FinishedMatchesPersistenceService {
     private final MatchRepository matchRepository = MatchRepository.getINSTANCE();
 
     private final PlayerRepository playerRepository = PlayerRepository.getINSTANCE();
+
+    @Getter
+    private static final FinishedMatchesPersistenceService INSTANCE = new FinishedMatchesPersistenceService();
+
+    private FinishedMatchesPersistenceService() {
+    }
 
     public void saveMatch(MatchScoreDto matchScoreDto, Player winner) {
         Player playerOne = savePlayer(matchScoreDto.getFirstPlayer().getName());
