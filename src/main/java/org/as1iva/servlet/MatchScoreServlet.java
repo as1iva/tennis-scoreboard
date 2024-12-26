@@ -10,6 +10,7 @@ import org.as1iva.entity.Player;
 import org.as1iva.service.FinishedMatchesPersistenceService;
 import org.as1iva.service.MatchScoreCalculationService;
 import org.as1iva.service.OngoingMatchesService;
+import org.as1iva.util.ParameterValidator;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -24,6 +25,8 @@ public class MatchScoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
         Long playerId = Long.parseLong(req.getParameter("playerId"));
+
+        ParameterValidator.checkMatchId(matchId);
 
         MatchScoreDto matchScoreDto = ongoingMatchesService.getMatchScore(matchId);
 
@@ -50,6 +53,8 @@ public class MatchScoreServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID matchId = UUID.fromString(req.getParameter("uuid"));
+
+        ParameterValidator.checkMatchId(matchId);
 
         MatchScoreDto matchScoreDto = ongoingMatchesService.getMatchScore(matchId);
 

@@ -1,14 +1,20 @@
 package org.as1iva.util;
 
 import lombok.experimental.UtilityClass;
+import org.as1iva.dto.MatchScoreDto;
+import org.as1iva.exception.MatchNotFoundException;
 import org.as1iva.exception.PlayerNotFoundException;
 import org.as1iva.exception.InvalidDataException;
 import org.as1iva.exception.PageNotFoundException;
+import org.as1iva.service.OngoingMatchesService;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 @UtilityClass
 public class ParameterValidator {
+
+    OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
     private static final String PAGE_NOT_FOUND_MESSAGE = "Oops... this page does not exist";
 
@@ -38,6 +44,14 @@ public class ParameterValidator {
             throw new PageNotFoundException(PAGE_NOT_FOUND_MESSAGE);
         } else {
             throw new PlayerNotFoundException("No players was found");
+        }
+    }
+
+    public static void checkMatchId(UUID matchId) {
+        MatchScoreDto matchScoreDto = ongoingMatchesService.getMatchScore(matchId);
+
+        if (matchScoreDto == null) {
+            throw new MatchNotFoundException("Match not found");
         }
     }
 }
