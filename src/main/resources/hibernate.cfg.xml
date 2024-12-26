@@ -17,6 +17,7 @@
     <property name="format_sql">true</property>
 
     <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.import_files">scripts/init_db.sql</property>
 
     <mapping class="org.as1iva.entity.Player"/>
     <mapping class="org.as1iva.entity.Match"/>
