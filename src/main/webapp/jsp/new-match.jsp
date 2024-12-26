@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +38,9 @@
             <div class="new-match-image"></div>
             <div class="form-container center">
                 <form method="post" action="${pageContext.request.contextPath}/new-match">
-                    <p style="color: red;">Sample error message</p>
+                    <c:if test="${not empty requestScope.error}">
+                        <p style="color: red;">${requestScope.error}</p>
+                    </c:if>
                     <label class="label-player" for="playerOne">Player one</label>
                     <input class="input-player" placeholder="Name" type="text" id="playerOne" name="playerOne"/>
                     <!--                           pattern="[A-Za-z]\. [A-Za-z]+" required-->
