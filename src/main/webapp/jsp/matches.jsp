@@ -78,94 +78,103 @@
         </c:url>
 
         <div class="pagination">
-            <c:if test="${requestScope.page > 1}">
-                <c:choose>
-                    <c:when test="${not empty param.filter_by_name}">
-                        <a class="prev" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_name=${param.filter_by_name}"> < </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="prev" href="${lastPageUrl}"> < </a>
-                    </c:otherwise>
-                </c:choose>
-            </c:if>
-
             <c:choose>
-                <c:when test="${requestScope.page == 1}">
-                    <c:choose>
-                        <c:when test="${not empty param.filter_by_name}">
-                            <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
-
-                            <c:if test="${requestScope.totalPages > 1}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_name=${param.filter_by_name}">${requestScope.page + 1}</a>
-                            </c:if>
-
-                            <c:if test="${requestScope.totalPages > 2}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 2}&filter_by_name=${param.filter_by_name}">${requestScope.page + 2}</a>
-                            </c:if>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
-
-                            <c:if test="${requestScope.totalPages > 1}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}">${requestScope.page + 1}</a>
-                            </c:if>
-
-                            <c:if test="${requestScope.totalPages > 2}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 2}">${requestScope.page + 2}</a>
-                            </c:if>
-                        </c:otherwise>
-                    </c:choose>
-                </c:when>
-
-                <c:when test="${requestScope.page == requestScope.totalPages}">
-                    <c:choose>
-                        <c:when test="${not empty param.filter_by_name}">
-                            <c:if test="${requestScope.totalPages > 2}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 2}&filter_by_name=${param.filter_by_name}">${requestScope.page - 2}</a>
-                            </c:if>
-
-                            <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_name=${param.filter_by_name}">${requestScope.page - 1}</a>
-                            <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
-                        </c:when>
-                        <c:otherwise>
-                            <c:if test="${requestScope.totalPages > 2}">
-                                <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 2}">${requestScope.page - 2}</a>
-                            </c:if>
-
-                            <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}">${requestScope.page - 1}</a>
-                            <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
-                        </c:otherwise>
-                    </c:choose>
-
+                <c:when test="${requestScope.totalPages == 0}">
+                    <a class="logo-text">${requestScope.errorMessage}</a>
                 </c:when>
 
                 <c:otherwise>
+                    <c:if test="${requestScope.page > 1}">
+                        <c:choose>
+                            <c:when test="${not empty param.filter_by_name}">
+                                <a class="prev" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_name=${param.filter_by_name}"> < </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="prev" href="${lastPageUrl}"> < </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+
                     <c:choose>
-                        <c:when test="${not empty param.filter_by_name}">
-                            <a class="num-page" href="${lastPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page - 1}</a>
-                            <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
-                            <a class="num-page" href="${nextPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page + 1}</a>
+                        <c:when test="${requestScope.page == 1}">
+                            <c:choose>
+                                <c:when test="${not empty param.filter_by_name}">
+                                    <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
+
+                                    <c:if test="${requestScope.totalPages > 1}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_name=${param.filter_by_name}">${requestScope.page + 1}</a>
+                                    </c:if>
+
+                                    <c:if test="${requestScope.totalPages > 2}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 2}&filter_by_name=${param.filter_by_name}">${requestScope.page + 2}</a>
+                                    </c:if>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
+
+                                    <c:if test="${requestScope.totalPages > 1}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}">${requestScope.page + 1}</a>
+                                    </c:if>
+
+                                    <c:if test="${requestScope.totalPages > 2}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 2}">${requestScope.page + 2}</a>
+                                    </c:if>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
+
+                        <c:when test="${requestScope.page == requestScope.totalPages}">
+                            <c:choose>
+                                <c:when test="${not empty param.filter_by_name}">
+                                    <c:if test="${requestScope.totalPages > 2}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 2}&filter_by_name=${param.filter_by_name}">${requestScope.page - 2}</a>
+                                    </c:if>
+
+                                    <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_name=${param.filter_by_name}">${requestScope.page - 1}</a>
+                                    <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:if test="${requestScope.totalPages > 2}">
+                                        <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 2}">${requestScope.page - 2}</a>
+                                    </c:if>
+
+                                    <a class="num-page" href="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}">${requestScope.page - 1}</a>
+                                    <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:when>
+
                         <c:otherwise>
-                            <a class="num-page" href="${lastPageUrl}">${requestScope.page - 1}</a>
-                            <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
-                            <a class="num-page" href="${nextPageUrl}">${requestScope.page + 1}</a>
+                            <c:choose>
+                                <c:when test="${not empty param.filter_by_name}">
+                                    <a class="num-page" href="${lastPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page - 1}</a>
+                                    <a class="num-page current" href="${currentPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page}</a>
+                                    <a class="num-page" href="${nextPageUrl}&filter_by_name=${param.filter_by_name}">${requestScope.page + 1}</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="num-page" href="${lastPageUrl}">${requestScope.page - 1}</a>
+                                    <a class="num-page current" href="${currentPageUrl}">${requestScope.page}</a>
+                                    <a class="num-page" href="${nextPageUrl}">${requestScope.page + 1}</a>
+                                </c:otherwise>
+                            </c:choose>
+
                         </c:otherwise>
                     </c:choose>
 
+                    <c:if test="${requestScope.page < requestScope.totalPages}">
+                        <c:choose>
+                            <c:when test="${not empty param.filter_by_name}">
+                                <a class="next" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_name=${param.filter_by_name}"> > </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="next" href="${nextPageUrl}"> > </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
                 </c:otherwise>
             </c:choose>
 
-            <c:if test="${requestScope.page < requestScope.totalPages}">
-                <c:choose>
-                    <c:when test="${not empty param.filter_by_name}">
-                        <a class="next" href="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_name=${param.filter_by_name}"> > </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="next" href="${nextPageUrl}"> > </a>
-                    </c:otherwise>
-                </c:choose>
-            </c:if>
         </div>
     </div>
 </main>
