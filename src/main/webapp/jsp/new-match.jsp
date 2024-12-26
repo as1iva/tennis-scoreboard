@@ -42,10 +42,10 @@
                         <p style="color: red;">${requestScope.error}</p>
                     </c:if>
                     <label class="label-player" for="playerOne">Player one</label>
-                    <input class="input-player" placeholder="Name" type="text" id="playerOne" name="playerOne"/>
+                    <input class="input-player" placeholder="N. Surname" type="text" id="playerOne" name="playerOne">
 
                     <label class="label-player" for="playerTwo">Player two</label>
-                    <input class="input-player" placeholder="Name" type="text" id="playerTwo" name="playerTwo" />
+                    <input class="input-player" placeholder="N. Surname" type="text" id="playerTwo" name="playerTwo">
 
                     <input class="form-button" type="submit" value="Start">
                 </form>
