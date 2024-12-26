@@ -8,8 +8,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.as1iva.exception.InvalidDataException;
+import org.as1iva.exception.PageNotFoundException;
 
 import java.io.IOException;
+
+import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebFilter("/*")
 public class ExceptionHandlerFilter extends HttpFilter {
@@ -22,6 +25,11 @@ public class ExceptionHandlerFilter extends HttpFilter {
         catch(InvalidDataException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/jsp/new-match.jsp").forward(req, resp);
+        }
+        catch(PageNotFoundException e) {
+            req.setAttribute("errorCode", SC_NOT_FOUND);
+            req.setAttribute("errorMessage", e.getMessage());
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
         }
     }
 }
