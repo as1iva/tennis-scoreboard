@@ -18,7 +18,8 @@ import java.util.UUID;
 @WebServlet("/match-score")
 public class MatchScoreServlet extends HttpServlet {
 
-    private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
+    private final OngoingMatchesService ongoingMatchesService = OngoingMatchesService.getINSTANCE();
+
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = FinishedMatchesPersistenceService.getINSTANCE();
 
     @Override

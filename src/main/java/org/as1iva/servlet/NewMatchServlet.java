@@ -20,7 +20,7 @@ public class NewMatchServlet extends HttpServlet {
 
     private static final Long PLACEHOLDER_SECOND_PLAYER_ID = 1L;
 
-    private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
+    private final OngoingMatchesService ongoingMatchesService = OngoingMatchesService.getINSTANCE();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

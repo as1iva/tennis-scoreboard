@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 @UtilityClass
 public class ParameterValidator {
 
-    OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
+    OngoingMatchesService ongoingMatchesService = OngoingMatchesService.getINSTANCE();
 
     private static final String PAGE_NOT_FOUND_MESSAGE = "Oops... this page does not exist";
 
