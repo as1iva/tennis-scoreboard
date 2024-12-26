@@ -43,12 +43,10 @@
                     </c:if>
                     <label class="label-player" for="playerOne">Player one</label>
                     <input class="input-player" placeholder="Name" type="text" id="playerOne" name="playerOne"/>
-                    <!--                           pattern="[A-Za-z]\. [A-Za-z]+" required-->
-                    <!--                           title="Enter a name in the format n. surname ">-->
+
                     <label class="label-player" for="playerTwo">Player two</label>
                     <input class="input-player" placeholder="Name" type="text" id="playerTwo" name="playerTwo" />
-                    <!--                           pattern="[A-Za-z]\. [A-Za-z]+" required-->
-                    <!--                           title="Enter a name in the format n. surname ">-->
+
                     <input class="form-button" type="submit" value="Start">
                 </form>
             </div>
