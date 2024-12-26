@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.as1iva.exception.MatchNotFoundException;
 import org.as1iva.exception.PlayerNotFoundException;
 import org.as1iva.exception.InvalidDataException;
 import org.as1iva.exception.PageNotFoundException;
@@ -26,7 +27,7 @@ public class ExceptionHandlerFilter extends HttpFilter {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/jsp/new-match.jsp").forward(req, resp);
         }
-        catch(PageNotFoundException e) {
+        catch(PageNotFoundException | MatchNotFoundException e) {
             req.setAttribute("errorCode", SC_NOT_FOUND);
             req.setAttribute("errorMessage", e.getMessage());
             req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
