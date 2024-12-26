@@ -5,6 +5,7 @@ import org.as1iva.dto.MatchResponseDto;
 import org.as1iva.dto.PlayerResponseDto;
 import org.as1iva.entity.Match;
 import org.as1iva.entity.Player;
+import org.as1iva.exception.PlayerNotFoundException;
 import org.as1iva.repository.MatchRepository;
 import org.as1iva.repository.PlayerRepository;
 
@@ -18,6 +19,8 @@ public class PaginationService {
     private final PlayerRepository playerRepository = PlayerRepository.getINSTANCE();
 
     private static final int PAGE_SIZE = 5;
+
+    private static final String PLAYER_NOT_FOUND = "Players cannot be found";
 
     @Getter
     private static final PaginationService INSTANCE = new PaginationService();
@@ -39,9 +42,14 @@ public class PaginationService {
         List<MatchResponseDto> matchResponseDtoList = new ArrayList<>();
 
         for (Match match : matches) {
-            Player playerOne = playerRepository.findById(match.getFirstPlayer().getId()).orElseThrow();
-            Player playerTwo = playerRepository.findById(match.getSecondPlayer().getId()).orElseThrow();
-            Player winner = playerRepository.findById(match.getWinner().getId()).orElseThrow();
+            Player playerOne = playerRepository.findById(match.getFirstPlayer().getId())
+                    .orElseThrow(() -> new PlayerNotFoundException(PLAYER_NOT_FOUND));
+
+            Player playerTwo = playerRepository.findById(match.getSecondPlayer().getId())
+                    .orElseThrow(() -> new PlayerNotFoundException(PLAYER_NOT_FOUND));
+
+            Player winner = playerRepository.findById(match.getWinner().getId())
+                    .orElseThrow(() -> new PlayerNotFoundException(PLAYER_NOT_FOUND));
 
             matchResponseDtoList.add(
                     MatchResponseDto.builder()
