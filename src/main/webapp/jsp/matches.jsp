@@ -22,7 +22,7 @@
             <div class="nav-toggle">
                 <img src="../images/menu.png" alt="Logo" class="logo">
             </div>
-            <span class="logo-text">TennisScoreboard</span>
+            <span class="logo-text">TennisScoreboard 🎾</span>
         </div>
         <div>
             <nav class="nav-links">
