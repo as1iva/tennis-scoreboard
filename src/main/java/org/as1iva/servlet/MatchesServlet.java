@@ -39,6 +39,8 @@ public class MatchesServlet extends HttpServlet {
         req.setAttribute("matches", matches);
         req.setAttribute("page", page);
 
+        ParameterValidator.checkPageParameter(page, totalPages);
+
         req.getRequestDispatcher("/jsp/matches.jsp").forward(req, resp);
     }
 }
