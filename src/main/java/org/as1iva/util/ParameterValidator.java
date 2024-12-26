@@ -22,7 +22,7 @@ public class ParameterValidator {
         if (pageParam == null || pageParam.isEmpty()) {
             page = 1;
         } else if (!pattern.matcher(pageParam).matches()) {
-            throw new DataNotFoundException("Oops... this page does not exist");
+            throw new PageNotFoundException("Oops... this page does not exist");
         } else {
             page = Integer.parseInt(pageParam);
         }
