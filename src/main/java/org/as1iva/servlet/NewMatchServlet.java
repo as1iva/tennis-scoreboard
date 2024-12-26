@@ -16,6 +16,10 @@ import java.util.UUID;
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
 
+    private static final Long PLACEHOLDER_FIRST_PLAYER_ID = 0L;
+
+    private static final Long PLACEHOLDER_SECOND_PLAYER_ID = 1L;
+
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
     @Override
@@ -36,12 +40,12 @@ public class NewMatchServlet extends HttpServlet {
         secondPlayerName = formatName(secondPlayerName);
 
         Player playerOne = Player.builder()
-                        .id(0L)
+                        .id(PLACEHOLDER_FIRST_PLAYER_ID)
                         .name(firstPlayerName)
                         .build();
 
         Player playerTwo = Player.builder()
-                        .id(1L)
+                        .id(PLACEHOLDER_SECOND_PLAYER_ID)
                         .name(secondPlayerName)
                         .build();
 
