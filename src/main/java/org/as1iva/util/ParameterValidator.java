@@ -3,6 +3,7 @@ package org.as1iva.util;
 import lombok.experimental.UtilityClass;
 import org.as1iva.exception.DataNotFoundException;
 import org.as1iva.exception.InvalidDataException;
+import org.as1iva.exception.PageNotFoundException;
 
 import java.util.regex.Pattern;
 
@@ -28,5 +29,13 @@ public class ParameterValidator {
         }
 
         return page;
+    }
+
+    public static void checkPageParameter(int page, long totalPage) {
+        if (totalPage > 0 && page > totalPage) {
+            throw new PageNotFoundException("Oops... this page does not exist");
+        } else {
+            throw new DataNotFoundException("No players was found");
+        }
     }
 }
