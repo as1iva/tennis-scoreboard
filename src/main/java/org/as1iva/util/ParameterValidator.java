@@ -1,7 +1,7 @@
 package org.as1iva.util;
 
 import lombok.experimental.UtilityClass;
-import org.as1iva.exception.DataNotFoundException;
+import org.as1iva.exception.PlayerNotFoundException;
 import org.as1iva.exception.InvalidDataException;
 import org.as1iva.exception.PageNotFoundException;
 
@@ -37,7 +37,7 @@ public class ParameterValidator {
         if (totalPage > 0 && page > totalPage) {
             throw new PageNotFoundException(PAGE_NOT_FOUND_MESSAGE);
         } else {
-            throw new DataNotFoundException("No players was found");
+            throw new PlayerNotFoundException("No players was found");
         }
     }
 }
