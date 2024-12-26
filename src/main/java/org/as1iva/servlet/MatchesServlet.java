@@ -28,8 +28,8 @@ public class MatchesServlet extends HttpServlet {
         long totalPages;
 
         if (playerName != null) {
-            matches = paginationService.getMatchesWithPaginationByPlayerName(page, playerName);
-            totalPages = paginationService.getTotalPagesByName(playerName);
+            matches = paginationService.getMatchesWithPaginationByPlayerName(page, playerName.trim());
+            totalPages = paginationService.getTotalPagesByName(playerName.trim());
         } else {
             matches = paginationService.getAllMatchesWithPagination(page);
             totalPages = paginationService.getTotalPages();
