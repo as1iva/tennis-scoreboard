@@ -28,6 +28,8 @@ public class NewMatchServlet extends HttpServlet {
         String firstPlayerName = req.getParameter("playerOne");
         String secondPlayerName = req.getParameter("playerTwo");
 
+        ParameterValidator.checkName(firstPlayerName);
+        ParameterValidator.checkName(secondPlayerName);
         ParameterValidator.checkNameEquality(firstPlayerName, secondPlayerName);
 
         Player playerOne = Player.builder()

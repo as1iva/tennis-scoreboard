@@ -24,6 +24,22 @@ public class ParameterValidator {
         }
     }
 
+    public static void checkName(String playerName) {
+        Pattern pattern = Pattern.compile("[A-Za-z]\\. [A-Za-z]+");
+
+        if (playerName == null || playerName.isEmpty()) {
+            throw new InvalidDataException("Player cannot have empty name");
+        }
+
+        if (!pattern.matcher(playerName).matches()) {
+            throw new InvalidDataException("Player's name must be in English and follow this format: N. Surname");
+        }
+
+        if (playerName.length() > 20) {
+            throw new InvalidDataException("Player's name too long (max. 20)");
+        }
+    }
+
     public static int checkPageParameter(String pageParam) {
         Pattern pattern = Pattern.compile("^[1-9]\\d*$");
         int page;
