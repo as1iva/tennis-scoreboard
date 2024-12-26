@@ -2,24 +2,32 @@ package org.as1iva.service;
 
 import org.as1iva.dto.MatchScoreDto;
 import org.as1iva.entity.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class MatchScoreCalculationServiceTest {
-    private final MatchScoreDto matchScoreDto = MatchScoreDto.builder()
-            .firstPlayer(Player.builder()
-                    .id(0L)
-                    .name("Tim")
-                    .build())
-            .secondPlayer(Player.builder()
-                    .id(1L)
-                    .name("Vlad")
-                    .build())
-            .build();
+    private MatchScoreDto matchScoreDto;
 
-    private final MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService(matchScoreDto);
+    private MatchScoreCalculationService matchScoreCalculationService;
+
+    @BeforeEach
+    void init() {
+        this.matchScoreDto = MatchScoreDto.builder()
+                .firstPlayer(Player.builder()
+                        .id(0L)
+                        .name("Tim")
+                        .build())
+                .secondPlayer(Player.builder()
+                        .id(1L)
+                        .name("Vlad")
+                        .build())
+                .build();
+
+        this.matchScoreCalculationService = new MatchScoreCalculationService(matchScoreDto);
+    }
 
     @Test
     void dontEndGameIfPlayerWinsPointAtDeuce() {
