@@ -32,6 +32,9 @@ public class NewMatchServlet extends HttpServlet {
         ParameterValidator.checkName(secondPlayerName);
         ParameterValidator.checkNameEquality(firstPlayerName, secondPlayerName);
 
+        firstPlayerName = formatName(firstPlayerName);
+        secondPlayerName = formatName(secondPlayerName);
+
         Player playerOne = Player.builder()
                         .id(0L)
                         .name(firstPlayerName)
@@ -50,5 +53,13 @@ public class NewMatchServlet extends HttpServlet {
         UUID uuid = ongoingMatchesService.setMatchScore(match);
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
+    }
+
+    private String formatName(String playerName) {
+        String[] parts = playerName.split("\\. ");
+        String name = parts[0].toUpperCase();
+        String surname = parts[1].substring(0, 1).toUpperCase() + parts[1].substring(1).toLowerCase();
+
+        return name + ". " + surname;
     }
 }
