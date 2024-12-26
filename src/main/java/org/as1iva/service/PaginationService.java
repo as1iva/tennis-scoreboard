@@ -26,36 +26,17 @@ public class PaginationService {
     }
 
     public List<MatchResponseDto> getAllMatchesWithPagination(int page) {
-        List<MatchResponseDto> matchResponseDtoList = new ArrayList<>();
-
         List<Match> matches = matchRepository.findAllWithPagination(page, PAGE_SIZE);
-
-        for (Match match : matches) {
-            Player playerOne = playerRepository.findById(match.getFirstPlayer().getId()).orElseThrow();
-            Player playerTwo = playerRepository.findById(match.getSecondPlayer().getId()).orElseThrow();
-            Player winner = playerRepository.findById(match.getWinner().getId()).orElseThrow();
-
-            matchResponseDtoList.add(
-                    MatchResponseDto.builder()
-                            .firstPlayer(PlayerResponseDto.builder()
-                                    .name(playerOne.getName())
-                                    .build())
-                            .secondPlayer(PlayerResponseDto.builder()
-                                    .name(playerTwo.getName())
-                                    .build())
-                            .winner(PlayerResponseDto.builder()
-                                    .name(winner.getName())
-                                    .build())
-                            .build()
-            );
-        }
-        return matchResponseDtoList;
+        return getMatchResponseDtoList(matches);
     }
 
     public List<MatchResponseDto> getMatchesWithPaginationByPlayerName(int page, String playerName) {
-        List<MatchResponseDto> matchResponseDtoList = new ArrayList<>();
-
         List<Match> matches = matchRepository.findByNameWithPagination(page, PAGE_SIZE, playerName);
+        return getMatchResponseDtoList(matches);
+    }
+
+    private List<MatchResponseDto> getMatchResponseDtoList(List<Match> matches) {
+        List<MatchResponseDto> matchResponseDtoList = new ArrayList<>();
 
         for (Match match : matches) {
             Player playerOne = playerRepository.findById(match.getFirstPlayer().getId()).orElseThrow();
