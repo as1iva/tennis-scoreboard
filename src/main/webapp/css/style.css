@@ -423,6 +423,7 @@ footer {
 /* Finished matches */
 
 .form-matches {
+    display: flex;
     width: 100%;
 }
 
