@@ -12,8 +12,9 @@ import java.util.List;
 
 public class PaginationService {
 
-    private final MatchRepository matchRepository = new MatchRepository();
     private final PlayerRepository playerRepository = new PlayerRepository();
+    private final MatchRepository matchRepository = MatchRepository.getINSTANCE();
+
     private static final int PAGE_SIZE = 5;
 
     public List<MatchResponseDto> getAllMatchesWithPagination(int page) {

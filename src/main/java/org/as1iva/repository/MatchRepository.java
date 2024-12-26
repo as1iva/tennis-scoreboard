@@ -1,5 +1,6 @@
 package org.as1iva.repository;
 
+import lombok.Getter;
 import org.as1iva.entity.Match;
 import org.hibernate.Session;
 
@@ -7,7 +8,10 @@ import java.util.List;
 
 public class MatchRepository extends BaseRepository<Long, Match> {
 
-    public MatchRepository() {
+    @Getter
+    private static final MatchRepository INSTANCE = new MatchRepository();
+
+    private MatchRepository() {
         super(Match.class);
     }
 
