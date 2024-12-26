@@ -16,7 +16,7 @@ public class ParameterValidator {
     }
 
     public static int checkPageParameter(String pageParam) {
-        Pattern pattern = Pattern.compile("^[1-9]\\d*$\n");
+        Pattern pattern = Pattern.compile("^[1-9]\\d*$");
         int page;
 
         if (pageParam == null || pageParam.isEmpty()) {
