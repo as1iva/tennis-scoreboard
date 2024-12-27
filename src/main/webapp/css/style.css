@@ -47,6 +47,7 @@ main {
 .container {
     margin: auto;
     padding-top: 50px;
+    padding-bottom: 20px;
     width: 75%;
 }
 
@@ -125,9 +126,9 @@ footer {
 .welcome-image {
     border-radius: 30px;
     margin-top: 20px;
-    background-image: url('../images/welcome_image.png');
+    background-image: url('../images/welcome_image.jpg');
     background-position: center;
-    min-height: 50vh;
+    min-height: 40vh;
     background-size: cover;
 }
 
@@ -163,7 +164,8 @@ footer {
     border-radius: 30px;
     margin: 20px 0;
     background-image: url('../images/racket.png');
-    height: 503px;
+    /*height: 503px;*/
+    min-height: 40vh;
     background-size: cover;
     background-position: center;
 }
@@ -181,6 +183,7 @@ footer {
     width: 100%;
     padding: 12px 10px;
     border: 1px solid #ccc;
+    box-sizing: border-box;
     border-radius: 18px;
 }
 
@@ -189,13 +192,13 @@ footer {
 }
 
 .label-player {
-    margin: 20px 0 3px;
+    margin: 15px 0 5px;
 }
 
 .form-button {
     width: 100%;
     display: block;
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 10px 0;
     border-radius: 18px;
     border: none;
@@ -277,7 +280,7 @@ footer {
 
 .player1 td, .player2 td {
     width: 5%;
-    padding: 60px 5px;
+    padding: 30px 5px;
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -303,6 +306,7 @@ footer {
 @media (max-width: 992px) {
     .container {
         width: 90%;
+        padding: 20px;
     }
 
     .form-container {
@@ -334,9 +338,7 @@ footer {
     .container {
         width: 100%;
         margin: 0;
-        padding-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 20px;
         box-sizing: border-box;
     }
 
@@ -462,7 +464,7 @@ footer {
 .table-matches td {
     width: 33%;
     border-bottom: 1px solid #dddddd;
-    padding: 51px 0;
+    padding: 41px 0;
     text-align: center;
 }
 
@@ -475,11 +477,12 @@ footer {
 }
 
 .winner-name-td {
-    background-color: #dddddd;
     display: block;
+    font-weight: bolder;
     width: 38%;
     margin: 0 auto;
     border-radius: 18px;
+    text-align: center;
 }
 
 .prev, .next {
@@ -513,20 +516,20 @@ footer {
 
 .centered-error {
     display: flex;
-    flex-direction: column; /* Расположить текст вертикально */
-    justify-content: center; /* Центрировать по вертикали */
-    align-items: center; /* Центрировать по горизонтали */
-    text-align: center; /* Центрируем текст */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .centered-error h1 {
-    font-size: 96px; /* Увеличенный размер для "errorCode" */
+    font-size: 96px;
     font-weight: bold;
-    margin-bottom: 20px; /* Отступ между заголовком и текстом */
+    margin-bottom: 20px;
 }
 
 .centered-error div {
-    font-size: 24px; /* Увеличенный размер текста */
-    color: #555; /* Более мягкий цвет */
+    font-size: 24px;
+    color: #555;
 }
 
