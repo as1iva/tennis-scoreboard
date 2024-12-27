@@ -8,6 +8,7 @@ import org.as1iva.entity.Player;
 import org.as1iva.exception.PlayerNotFoundException;
 import org.as1iva.repository.MatchRepository;
 import org.as1iva.repository.PlayerRepository;
+import org.as1iva.util.MapperUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,17 +52,15 @@ public class PaginationService {
             Player winner = playerRepository.findById(match.getWinner().getId())
                     .orElseThrow(() -> new PlayerNotFoundException(PLAYER_NOT_FOUND));
 
+            PlayerResponseDto playerOneResponseDto = MapperUtil.INSTANCE.toDto(playerOne);
+            PlayerResponseDto playerTwoResponseDto = MapperUtil.INSTANCE.toDto(playerTwo);
+            PlayerResponseDto playerWinnerResponseDto = MapperUtil.INSTANCE.toDto(winner);
+
             matchResponseDtoList.add(
                     MatchResponseDto.builder()
-                            .firstPlayer(PlayerResponseDto.builder()
-                                    .name(playerOne.getName())
-                                    .build())
-                            .secondPlayer(PlayerResponseDto.builder()
-                                    .name(playerTwo.getName())
-                                    .build())
-                            .winner(PlayerResponseDto.builder()
-                                    .name(winner.getName())
-                                    .build())
+                            .firstPlayer(playerOneResponseDto)
+                            .secondPlayer(playerTwoResponseDto)
+                            .winner(playerWinnerResponseDto)
                             .build()
             );
         }
